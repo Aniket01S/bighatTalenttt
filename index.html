@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bighattalent - Influencer Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Jost', sans-serif;
+      color: #333;
+      background-color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      background: #fff;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #5e3bee;
+    }
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+    nav a:hover {
+      color: #5e3bee;
+    }
+    .hero {
+      padding-top: 100px;
+      text-align: center;
+      background: linear-gradient(135deg, #5e3bee, #a67ff3);
+      color: #fff;
+      padding-bottom: 80px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+    .hero h2 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    .btn-primary {
+      background: #fff;
+      color: #5e3bee;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin: 8px;
+      font-size: 0.95rem;
+    }
+    section {
+      padding: 60px 5%;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    .card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      background-color: #fff;
+    }
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      margin-top: 8px;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin: 4px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 5%;
+      background: #f9f9f9;
+      color: #999;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .hero p, .hero h2, .btn-primary {
+        font-size: 0.9rem;
+      }
+      .logo {
+        font-size: 1.4rem;
+      }
+      nav a {
+        margin-left: 10px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Bighattalent</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#influencers">Influencers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>We Manage Influencers with Bighattalent</h1>
+    <p>Join the top-tier talent network and grow your personal brand today.</p>
+    <h2>Register As</h2>
+    <a href="https://forms.gle/qHWYjVhxouy617376" target="_blank" class="btn-primary">Influencer</a>
+    <a href="https://forms.gle/exampleBrandFormLink" target="_blank" class="btn-primary">Brand</a>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p style="max-width: 800px; margin: auto; text-align: center; font-size: 0.95rem;">Bighattalent is a modern influencer management agency that brings brands and talent together for impactful collaborations. We empower influencers to connect with the right audience and elevate their reach.</p>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="ri-user-star-line" style="font-size: 1.8rem;"></i>
+        <h3>Talent Management</h3>
+        <p>Full support and guidance for influencers in brand collaboration and content growth.</p>
+      </div>
+      <div class="card">
+        <i class="ri-hand-coin-line" style="font-size: 1.8rem;"></i>
+        <h3>Advertisement</h3>
+        <p>We help influencers to grow more so they can get sponsorships, and campaigns.</p>
+      </div>
+      <div class="card">
+        <i class="ri-global-line" style="font-size: 1.8rem;"></i>
+        <h3>Brand Exposure</h3>
+        <p>Get connected with top brands and grow your visibility across digital platforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="influencers">
+    <h2 class="section-title">Our Influencers</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="ranveer.png" alt="Ranveer Rajput">
+        <h3>Ranveer Rajput</h3>
+        <p>Followers: 3.2k</p>
+        <p>Instagram: @ranveerpullz</p>
+      </div>
+      <div class="card">
+        <img src="arpit.png" alt="Arpit Dubey">
+        <h3>Arpit Dubey</h3>
+        <p>Followers: 41k</p>
+        <p>Instagram: @arpittdubey</p>
+      </div>
+      <div class="card">
+        <img src="vaishnavi.png" alt="Vaishnavi Chaudhary">
+        <h3>Vaishnavi Chaudhary</h3>
+        <p>Followers: 280k</p>
+        <p>Instagram: @vaishnavichaudharyy</p>
+      </div>
+      <div class="card">
+        <img src="khushi.jpeg" alt="Khushi Mishra">
+        <h3>Khushi Mishra</h3>
+        <p>Followers: 38.6k</p>
+        <p>Instagram: @khushi.unfiltered_</p>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.F3DQ-U3wNFw7i-Cw_JzXYgHaJQ?rs=1&pid=ImgDetMain" alt="Yogesh Sharma">
+        <h3>Yogesh Sharma</h3>
+        <p>Followers: 395k</p>
+        <p>Instagram: @Yogesh_perfectentertainer</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p style="text-align: center; font-size: 0.95rem;">Email: connect@bighattalent.com | Instagram: @bighattalent</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Bighattalent. All rights reserved.
+  </footer>
+</body>
+</html>
