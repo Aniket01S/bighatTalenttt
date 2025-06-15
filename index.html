@@ -1,14 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bighattalent - Influencer Management</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      background: #fff;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #5e3bee;
+    }
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+    nav a:hover {
+      color: #5e3bee;
+    }
+    .hero {
+      padding-top: 100px;
+      padding-bottom: 80px;
+      text-align: center;
+      background: linear-gradient(135deg, #5e3bee, #a67ff3);
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      max-width: 90%;
+      margin-inline: auto;
+    }
+    .hero h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .btn-primary {
+      background: #fff;
+      color: #5e3bee;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin: 8px;
+      font-size: 0.95rem;
+    }
+    section {
+      padding: 60px 5%;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    .card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      background-color: #fff;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      margin-top: 8px;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin: 4px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 5%;
+      background: #f9f9f9;
+      color: #999;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .hero p, .hero h2 {
+        font-size: 0.9rem;
+      }
+      .logo {
+        font-size: 1.4rem;
+      }
+      nav a {
+        margin-left: 10px;
+        font-size: 0.85rem;
+      }
+      .btn-primary {
+        width: 90%;
+        max-width: 300px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .card img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+  
+    
     * {
       margin: 0;
       padding: 0;
@@ -864,13 +1016,13 @@
         <p>Instagram: @Yogesh_perfectentertainer</p>
       </a>
       <a href="https://instagram.com/antaravlogs" target="_blank" class="influencer-card fade-in">
-        <img src="antara.png" alt="Antara Roy">
+        <img src="antara.jpg" alt="Antara Roy">
         <h3>Antara Roy</h3>
         <p>Followers: 22.1k</p>
         <p>Instagram: @antaravlogs</p>
       </a>
       <a href="https://instagram.com/chhoti_vlogs02" target="_blank" class="influencer-card fade-in">
-        <img src="tanya.png" alt="Tanya Singh">
+        <img src="tanya.jpg" alt="Tanya Singh">
         <h3>Tanya Singh</h3>
         <p>Followers: 48.7k</p>
         <p>Instagram: @chhoti_vlogs02</p>
