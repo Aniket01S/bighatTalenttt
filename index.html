@@ -6,7 +6,7 @@
   <title>Bighattalent - Influencer Management</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css">
   <style>
     * {
@@ -14,137 +14,678 @@
       padding: 0;
       box-sizing: border-box;
     }
-    body {
-      font-family: 'Jost', sans-serif;
-      color: #333;
-      background-color: #fff;
-      line-height: 1.6;
+
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #ec4899;
+      --accent: #f59e0b;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --glass: rgba(255, 255, 255, 0.1);
+      --shadow: rgba(0, 0, 0, 0.1);
     }
+
+    body {
+      font-family: 'Inter', 'Jost', sans-serif;
+      color: var(--dark);
+      background: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      opacity: 0.05;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) { width: 10px; height: 10px; top: 20%; left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { width: 15px; height: 15px; top: 60%; left: 80%; animation-delay: 2s; }
+    .particle:nth-child(3) { width: 8px; height: 8px; top: 80%; left: 20%; animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
     header {
-      background: #fff;
-      padding: 20px 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 15px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: fixed;
       width: 100%;
       z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
     }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      transform: translateY(0);
+    }
+
     .logo {
       font-size: 1.8rem;
-      font-weight: 700;
-      color: #5e3bee;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
     }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
     nav a {
-      margin-left: 15px;
       text-decoration: none;
-      color: #333;
+      color: var(--dark);
       font-weight: 500;
-      transition: color 0.3s;
       font-size: 0.95rem;
+      position: relative;
+      padding: 8px 0;
+      transition: all 0.3s ease;
     }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
     nav a:hover {
-      color: #5e3bee;
+      color: var(--primary);
+      transform: translateY(-2px);
     }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
     .hero {
-      padding-top: 100px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      background: linear-gradient(135deg, #5e3bee, #a67ff3);
-      color: #fff;
-      padding-bottom: 80px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      animation: grain 20s linear infinite;
+    }
+
+    @keyframes grain {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-5%, -5%); }
+      20% { transform: translate(-10%, 5%); }
+      30% { transform: translate(5%, -10%); }
+      40% { transform: translate(-5%, 15%); }
+      50% { transform: translate(-10%, 5%); }
+      60% { transform: translate(15%, 0%); }
+      70% { transform: translate(0%, 10%); }
+      80% { transform: translate(-15%, 0%); }
+      90% { transform: translate(10%, 5%); }
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 800px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      animation: fadeInUp 1s ease-out 0.2s both;
     }
+
     .hero p {
-      font-size: 1rem;
-      margin-bottom: 25px;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease-out 0.4s both;
     }
+
     .hero h2 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-    }
-    .btn-primary {
-      background: #fff;
-      color: #5e3bee;
-      padding: 10px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin: 8px;
-      font-size: 0.95rem;
-    }
-    section {
-      padding: 60px 5%;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       margin-bottom: 30px;
       font-weight: 600;
+      animation: fadeInUp 1s ease-out 0.6s both;
     }
-    .card {
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 25px;
+
+    .btn-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .btn-primary {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    section {
+      padding: 100px 5%;
+      position: relative;
+    }
+
+    .section-title {
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      background-color: #fff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+      color: var(--dark);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .card img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 10px;
+
+    .section-title.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .card h3 {
-      margin-top: 8px;
-      font-size: 1.2rem;
+
+    /* Special styling for About Us section title */
+    #about .section-title {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
     }
-    .card p {
-      margin: 4px 0;
-      color: #555;
-      font-size: 0.9rem;
+
+    /* Fallback for better readability */
+    #about .section-title::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--dark);
+      -webkit-text-fill-color: var(--dark);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
+
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--dark);
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease 0.2s;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-content.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
     }
+
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover i {
+      color: white;
+      -webkit-text-fill-color: white;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .influencer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .influencer-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .influencer-card.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .influencer-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .influencer-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .influencer-card:hover::before {
+      left: 100%;
+    }
+
+    .influencer-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid transparent;
+      transition: all 0.3s ease;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+    }
+
+    .influencer-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .influencer-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .influencer-card p {
+      color: #666;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+
+    .contact-section {
+      background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .contact-section .section-title {
+      color: white;
+      -webkit-text-fill-color: white;
+    }
+
+    .contact-info {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease 0.2s;
+    }
+
+    .contact-info.animate {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+
     footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.7);
       text-align: center;
       padding: 30px 5%;
-      background: #f9f9f9;
-      color: #999;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
-    @media (max-width: 600px) {
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
       .hero h1 {
-        font-size: 1.7rem;
+        font-size: 2.5rem;
       }
-      .hero p, .hero h2, .btn-primary {
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .btn-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .influencer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      
+      nav {
+        gap: 15px;
+      }
+      
+      nav a {
         font-size: 0.9rem;
       }
-      .logo {
-        font-size: 1.4rem;
+
+      .process-step {
+        flex-direction: column !important;
+        text-align: center;
+        transform: translateY(30px) !important;
       }
-      nav a {
-        margin-left: 10px;
-        font-size: 0.85rem;
+
+      .process-step.animate {
+        transform: translateY(0) !important;
       }
+
+      .step-number {
+        min-width: auto;
+      }
+
+      .about-content {
+        padding: 30px 20px;
+        margin: 0 20px;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Process section styles */
+    .process-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    .process-step:nth-child(even) {
+      transform: translateX(50px);
+      flex-direction: row-reverse;
+    }
+
+    .process-step.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .step-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 80px;
+    }
+
+    .step-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .step-content p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .process-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .process-step:nth-child(even):hover {
+      transform: translateY(-5px);
     }
   </style>
 </head>
 <body>
-  <header>
+  <div class="bg-animation"></div>
+  
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <header id="header">
     <div class="logo">BighatTalent</div>
     <nav>
       <a href="#home">Home</a>
       <a href="#about">About</a>
+      <a href="#why-choose-us">Why Us</a>
       <a href="#services">Services</a>
       <a href="#influencers">Influencers</a>
       <a href="#contact">Contact</a>
@@ -152,113 +693,289 @@
   </header>
 
   <section class="hero" id="home">
-    <h1>We Manage Influencers with BighatTalent</h1>
-    <p>Join the top-tier talent network and grow your personal brand today.</p>
-    <h2>Register As</h2>
-    <a href="https://forms.gle/qHWYjVhxouy617376" target="_blank" class="btn-primary">Influencer</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4uVOZo6V5V-NccyQDhzpem3b_oUFSEBnRF3B-xItITEfbOQ/viewform?usp=header" target="_blank" class="btn-primary">Brand</a>
+    <div class="hero-content">
+      <h1>We Manage Influencers with BighatTalent</h1>
+      <p>Join the top-tier talent network and grow your personal brand today.</p>
+      <h2>Register As</h2>
+      <div class="btn-container">
+        <a href="https://forms.gle/qHWYjVhxouy617376" target="_blank" class="btn-primary">Influencer</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd7W_99DUVU9hp-sBsc2UTgyzwuaUgspXP0iyOM-KetoU6-YA/viewform" target="_blank" class="btn-primary">Brand</a>
+      </div>
+    </div>
   </section>
 
   <section id="about">
-    <h2 class="section-title">About Us</h2>
-    <p style="max-width: 800px; margin: auto; text-align: center; font-size: 0.95rem;">BigHat Talent is a next-gen influencer and talent agency built for the bold, the creative, and the impactful.
+    <h2 class="section-title fade-in">About Us</h2>
+    <div class="about-content fade-in">
+      <p>BigHat Talent is a next-gen influencer and talent agency built for the bold, the creative, and the impactful.</p>
+      <br>
+      <p>We connect top-performing content creators with brands that want more than just reach — they want results. At BigHat Talent, we believe in the power of authentic voices, niche expertise, and story-driven campaigns that leave a lasting impression.</p>
+      <br>
+      <p>Our roster includes creators across tech, fashion, lifestyle, food, and finance — each one handpicked for their influence, creativity, and deep audience trust.</p>
+    </div>
+  </section>
 
-We connect top-performing content creators with brands that want more than just reach — they want results. At BigHat Talent, we believe in the power of authentic voices, niche expertise, and story-driven campaigns that leave a lasting impression.
+  <section id="why-choose-us" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+    <h2 class="section-title fade-in">Why Choose BighatTalent?</h2>
+    <div class="grid">
+      <div class="card fade-in">
+        <i class="ri-trophy-line"></i>
+        <h3>Proven Track Record</h3>
+        <p>Over 500+ successful campaigns with measurable ROI for our brand partners and sustainable growth for our creators.</p>
+      </div>
+      <div class="card fade-in">
+        <i class="ri-team-line"></i>
+        <h3>Dedicated Support</h3>
+        <p>Each influencer gets a dedicated account manager who understands their niche and helps optimize their content strategy.</p>
+      </div>
+      <div class="card fade-in">
+        <i class="ri-rocket-line"></i>
+        <h3>Growth Acceleration</h3>
+        <p>Our proprietary analytics and growth strategies have helped creators increase their engagement by 300% on average.</p>
+      </div>
+      <div class="card fade-in">
+        <i class="ri-shield-check-line"></i>
+        <h3>Brand Safety</h3>
+        <p>Comprehensive vetting process ensures all collaborations align with brand values and maintain authentic storytelling.</p>
+      </div>
+      <div class="card fade-in">
+        <i class="ri-money-dollar-circle-line"></i>
+        <h3>Fair Compensation</h3>
+        <p>Transparent pricing models and fair revenue sharing that ensures creators are compensated appropriately for their work.</p>
+      </div>
+      <div class="card fade-in">
+        <i class="ri-global-line"></i>
+        <h3>Global Reach</h3>
+        <p>Access to international markets and cross-platform opportunities to maximize your content's impact and reach.</p>
+      </div>
+    </div>
+  </section>
 
-Our roster includes creators across tech, fashion, lifestyle, food, and finance — each one handpicked for their influence, creativity, and deep audience trust.</p>
+  <section id="success-stories" style="background: var(--dark); color: white;">
+    <h2 class="section-title fade-in" style="color: white; -webkit-text-fill-color: white;">Success Stories</h2>
+    <div class="grid">
+      <div class="card fade-in" style="background: rgba(255, 255, 255, 0.1); color: white;">
+        <i class="ri-line-chart-line" style="color: var(--accent);"></i>
+        <h3>Fashion Campaign</h3>
+        <p>"BighatTalent helped me grow from 50K to 280K followers in just 6 months. The brand partnerships they secured were perfect for my audience!"</p>
+        <small style="opacity: 0.8; font-style: italic;">- Vaishnavi Chaudhary</small>
+      </div>
+      <div class="card fade-in" style="background: rgba(255, 255, 255, 0.1); color: white;">
+        <i class="ri-heart-line" style="color: var(--secondary);"></i>
+        <h3>Lifestyle Brand</h3>
+        <p>"The team understood my content style perfectly. Every collaboration felt authentic and my engagement rates doubled."</p>
+        <small style="opacity: 0.8; font-style: italic;">- Arpit Dubey</small>
+      </div>
+      <div class="card fade-in" style="background: rgba(255, 255, 255, 0.1); color: white;">
+        <i class="ri-video-line" style="color: var(--primary);"></i>
+        <h3>Entertainment Growth</h3>
+        <p>"From 100K to 395K in 8 months! BighatTalent's strategy and support made all the difference in my creator journey."</p>
+        <small style="opacity: 0.8; font-style: italic;">- Yogesh Sharma</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);">
+    <h2 class="section-title fade-in">Our Process</h2>
+    <div class="process-container">
+      <div class="process-step fade-in">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h3>Discovery & Analysis</h3>
+          <p>We analyze your content, audience demographics, and growth potential to create a personalized strategy.</p>
+        </div>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h3>Brand Matching</h3>
+          <p>Our AI-powered system matches you with brands that align with your values and audience interests.</p>
+        </div>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h3>Campaign Creation</h3>
+          <p>Collaborative campaign development that maintains your authentic voice while meeting brand objectives.</p>
+        </div>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <h3>Performance Tracking</h3>
+          <p>Real-time analytics and optimization to ensure maximum engagement and ROI for all parties.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="services">
-    <h2 class="section-title">Our Services</h2>
+    <h2 class="section-title fade-in">Our Services</h2>
     <div class="grid">
-      <div class="card">
-        <i class="ri-user-star-line" style="font-size: 1.8rem;"></i>
+      <div class="card fade-in">
+        <i class="ri-user-star-line"></i>
         <h3>Talent Management</h3>
         <p>Full support and guidance for influencers in brand collaboration and content growth.</p>
       </div>
-      <div class="card">
-        <i class="ri-hand-coin-line" style="font-size: 1.8rem;"></i>
+      <div class="card fade-in">
+        <i class="ri-hand-coin-line"></i>
         <h3>Advertisement</h3>
         <p>We help influencers to grow more so they can get sponsorships, and campaigns.</p>
       </div>
-      <div class="card">
-        <i class="ri-global-line" style="font-size: 1.8rem;"></i>
+      <div class="card fade-in">
+        <i class="ri-global-line"></i>
         <h3>Brand Exposure</h3>
         <p>Get connected with top brands and grow your visibility across digital platforms.</p>
       </div>
     </div>
   </section>
 
- <section id="influencers">
-  <h2 class="section-title">Our Influencers</h2>
-  <div class="grid">
-    <a href="https://instagram.com/ranveerpullz" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+  <section id="influencers">
+    <h2 class="section-title fade-in">Our Influencers</h2>
+    <div class="influencer-grid">
+      <a href="https://instagram.com/ranveerpullz" target="_blank" class="influencer-card fade-in">
         <img src="ranveer.png" alt="Ranveer Rajput">
         <h3>Ranveer Rajput</h3>
         <p>Followers: 3.2k</p>
         <p>Instagram: @ranveerpullz</p>
-      </div>
-    </a>
-    <a href="https://instagram.com/arpittdubey" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+      </a>
+      <a href="https://instagram.com/arpittdubey" target="_blank" class="influencer-card fade-in">
         <img src="arpit.png" alt="Arpit Dubey">
         <h3>Arpit Dubey</h3>
         <p>Followers: 41k</p>
         <p>Instagram: @arpittdubey</p>
-      </div>
-    </a>
-    <a href="https://instagram.com/vaishnavichaudharyy" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+      </a>
+      <a href="https://instagram.com/vaishnavichaudharyy" target="_blank" class="influencer-card fade-in">
         <img src="vaishnavi.png" alt="Vaishnavi Chaudhary">
         <h3>Vaishnavi Chaudhary</h3>
         <p>Followers: 280k</p>
         <p>Instagram: @vaishnavichaudharyy</p>
-      </div>
-    </a>
-    <a href="https://instagram.com/khushi.unfiltered_" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+      </a>
+      <a href="https://instagram.com/khushi.unfiltered_" target="_blank" class="influencer-card fade-in">
         <img src="khushi.jpeg" alt="Khushi Mishra">
         <h3>Khushi Mishra</h3>
         <p>Followers: 38.6k</p>
         <p>Instagram: @khushi.unfiltered_</p>
-      </div>
-    </a>
-    <a href="https://instagram.com/Yogesh_perfectentertainer" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+      </a>
+      <a href="https://instagram.com/Yogesh_perfectentertainer" target="_blank" class="influencer-card fade-in">
         <img src="https://th.bing.com/th/id/OIP.F3DQ-U3wNFw7i-Cw_JzXYgHaJQ?rs=1&pid=ImgDetMain" alt="Yogesh Sharma">
         <h3>Yogesh Sharma</h3>
         <p>Followers: 395k</p>
         <p>Instagram: @Yogesh_perfectentertainer</p>
-      </div>
-    </a>
-    <a href="https://instagram.com/antaravlogs" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+      </a>
+      <a href="https://instagram.com/antaravlogs" target="_blank" class="influencer-card fade-in">
         <img src="antara.png" alt="Antara Roy">
         <h3>Antara Roy</h3>
         <p>Followers: 22.1k</p>
         <p>Instagram: @antaravlogs</p>
-      </div>
-    </a>
-    <a href="https://instagram.com/chhoti_vlogs02" target="_blank" style="text-decoration: none; color: inherit;">
-      <div class="card">
+      </a>
+      <a href="https://instagram.com/chhoti_vlogs02" target="_blank" class="influencer-card fade-in">
         <img src="tanya.png" alt="Tanya Singh">
         <h3>Tanya Singh</h3>
         <p>Followers: 48.7k</p>
         <p>Instagram: @chhoti_vlogs02</p>
-      </div>
-    </a>
-  </div>
-</section>
+      </a>
+    </div>
+  </section>
 
-
-  <section id="contact">
-    <h2 class="section-title">Contact Us</h2>
-    <p style="text-align: center; font-size: 0.95rem;">Email: team@bighattalent.com | Instagram: @bighattalent</p>
+  <section id="contact" class="contact-section">
+    <h2 class="section-title fade-in">Contact Us</h2>
+    <div class="contact-info fade-in">
+      <p>Email: connect@bighattalent.com | Instagram: @bighattalent</p>
+    </div>
   </section>
 
   <footer>
     &copy; 2025 Bighattalent. All rights reserved.
   </footer>
+
+  <script>
+    // Smooth scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with fade-in class
+    document.querySelectorAll('.fade-in, .card, .influencer-card, .process-step').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = target.offsetTop - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add staggered animation delays to cards
+    document.querySelectorAll('.card').forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+    document.querySelectorAll('.influencer-card').forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+    document.querySelectorAll('.process-step').forEach((step, index) => {
+      step.style.transitionDelay = `${index * 0.2}s`;
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+
+    // Add mouse move effect to cards
+    document.querySelectorAll('.card, .influencer-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+      });
+    });
+  </script>
 </body>
 </html>
